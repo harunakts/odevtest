@@ -23,7 +23,7 @@ spec:
         app: nginxharun
     spec:
       containers:
-      - image: harunakts94/harunodevnginx:1.0
+      - image: nginx:stable
         imagePullPolicy: Always
         name: nginxharun
       nodeName: worker2
