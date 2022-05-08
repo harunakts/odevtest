@@ -22,13 +22,22 @@ spec:
       labels:
         app: nginxharun
     spec:
-      volumes:
-      - name: testicin
-        emptyDir:  {}
       containers:
       - image: harunakts94/nginx:1.0
         imagePullPolicy: Always
         name: nginxharun
+        ports:
+        - containerPort: 80
+        readinessProbe:
+          tcpSocket:
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          tcpSocket:
+            port: 80
+          initialDelaySeconds: 15
+          periodSeconds: 20
       nodeName: worker2
 
 ---
