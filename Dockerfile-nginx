@@ -1,0 +1,22 @@
+FROM ubuntu:18.04
+
+RUN apt update -y
+
+RUN apt install nginx -y
+
+RUN rm /etc/nginx/sites-available/default
+
+COPY default /etc/nginx/sites-available/
+
+COPY harun.sh /root/
+
+MAINTAINER harunakts95@gmail.com
+
+CMD chmod 775 /root/harun.sh && /root/harun.sh && tail -1000f /var/log/nginx/access.log
+
+#expose port 8080
+
+EXPOSE 80
+
+
+
