@@ -1,0 +1,47 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: nginx-demo
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nginxharun
+  name: nginxharun
+  namespace: nginx-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginxharun
+  template:
+    metadata:
+      labels:
+        app: nginxharun
+    spec:
+      containers:
+      - image: harunakts94/harunodevnginx:1.0
+        imagePullPolicy: Always
+        name: nginxharun
+      nodeName: worker2
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: nginxharun
+  name: nginxharun
+  namespace: nginx-demo
+spec:
+  ports:
+  - nodePort: 33333
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: nginxharun
+  type: NodePort
