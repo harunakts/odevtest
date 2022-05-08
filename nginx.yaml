@@ -22,8 +22,11 @@ spec:
       labels:
         app: nginxharun
     spec:
+      volumes:
+      - name: testicin
+        emptyDir:  {}
       containers:
-      - image: nginx:stable
+      - image: harunakts94/nginx:1.0
         imagePullPolicy: Always
         name: nginxharun
       nodeName: worker2
@@ -38,7 +41,7 @@ metadata:
   namespace: nginx-demo
 spec:
   ports:
-  - nodePort: 33333
+  - nodePort: 32700
     port: 80
     protocol: TCP
     targetPort: 80
