@@ -14,7 +14,7 @@ MAINTAINER harunakts95@gmail.com
 
 CMD chmod 775 /root/harun.sh && /root/harun.sh && tail -1000f /var/log/nginx/access.log
 
-#expose port 8080
+#expose port 80
 
 EXPOSE 80
 
